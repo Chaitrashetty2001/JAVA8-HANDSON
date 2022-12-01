@@ -54,32 +54,37 @@ public class EmployeeGetFile {
 		System.out.println(emp.stream().collect(Collectors.groupingBy(Employee::isManager)));
 
 	}
-	public static void  technicalLead(List<Employee> emp) {
-		emp.stream().filter(i->Period.between(i.getJoinDate().toLocalDate(),LocalDate.now()).getYears()>=7).forEach(System.out::println);
-		
+
+	public static void technicalLead(List<Employee> emp) {
+		emp.stream().filter(i -> Period.between(i.getJoinDate().toLocalDate(), LocalDate.now()).getYears() >= 7)
+				.forEach(System.out::println);
+
 	}
 
 	public static void main(String[] args) throws IOException {
 		String fileName = "C:\\employee.csv";
 		System.out.println("EMPLOYEE DATA LIST");
 		List<Employee> emp = readEmployee(fileName);
-		System.out.println("------------------------------------------------TOP FIVE EMPLOYEE LIST BASED ON JOINING DATE--------------------------------------------------------------");
+		System.out.println(
+				"------------------------------------------------TOP FIVE EMPLOYEE LIST BASED ON JOINING DATE--------------------------------------------------------------");
 		sort(emp);
 		System.out.println();
-		System.out.println(	"------------------------------------------------EMPLOYEESBASED ON  JoiningDate AS INPUT------------------------------------------------------------------");
+		System.out.println(
+				"------------------------------------------------EMPLOYEESBASED ON  JoiningDate AS INPUT------------------------------------------------------------------");
 		System.out.println();
 		getEmployee(emp, LocalDateTime.parse("2013-03-19T18:18:12.135"));
-		System.out.println("--------------------------------------------------WORKING DAYS FOR NEXT WEEK------------------------------------------------------------------------------");
+		System.out.println(
+				"--------------------------------------------------WORKING DAYS FOR NEXT WEEK------------------------------------------------------------------------------");
 		System.out.println();
 		workingDaysForNextWeek(LocalDateTime.parse("2019-10-28T19:18:12.135"));
-		System.out.println("---------------------------------------------------DATA CATEGORISED AS REGULAR OR MANAGER BASED ON isManager FIELD----------------------------------------");
+		System.out.println(
+				"---------------------------------------------------DATA CATEGORISED AS REGULAR OR MANAGER BASED ON isManager FIELD----------------------------------------");
 		basedOnIsManager(emp);
 		System.out.println();
-		System.out.println("----------------------------------------------------TechnicalLead for Employees having experience >7 yrs------------------------------------------------------------------------------------------------------");
-		
+		System.out.println(
+				"----------------------------------------------------TechnicalLead for Employees having experience >7 yrs------------------------------------------------------------------------------------------------------");
+
 		technicalLead(emp);
-	
-		
 
 	}
 }
